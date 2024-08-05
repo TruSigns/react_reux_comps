@@ -1,29 +1,30 @@
 import React from "react";
 import Button from "./Button";
+import './index.css'
 
 function App() {
   return (
     <div>
-      <div>
+      <div >
         <Button>Click!</Button>
       </div>
       <div>
-        <Button></Button>
+        <Button>Because</Button>
       </div>
       <div>
-        <Button></Button>
+        <Button>Learn!</Button>
       </div>
       <div>
-        <Button></Button>
+        <Button>STOP</Button>
       </div>
       <div>
-        <Button></Button>
+        <Button>GO!</Button>
       </div>
       <div>
-        <Button></Button>
+        <Button>LIFE</Button>
       </div>
       <div>
-        <Button></Button>
+        <Button>motivate</Button>
       </div>
     </div>
   );
