@@ -18,7 +18,8 @@ function App() {
     { label: "Yellow", value: "yellow" },
   ];
   return (
-    <Dropdown options={options} selection={select} onSelect={handleSelect} />
+    // change selection to value for naming convention and same for onChange
+    <Dropdown options={options} value={select} onChange={handleSelect} />
   );
 }
 

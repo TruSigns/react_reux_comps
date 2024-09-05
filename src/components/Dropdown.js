@@ -1,33 +1,54 @@
 import React from "react";
 import { useState } from "react";
-function Dropdown({ options, select, onSelect }) {
-
-
-  const [open, setOpen] = useState(false)
+import { GoChevronDown } from "react-icons/go";
+import Panel from "./Panel";
+function Dropdown({ options, value, onChange }) {
+  const [open, setOpen] = useState(false);
 
   const handleClick = () => {
-    setOpen(!open)
-  }
+    setOpen(!open);
+  };
 
   const handleClickOptions = (options) => {
     // close down dropbown
-    setOpen(false)
-    onSelect(options)
-  }
+    setOpen(false);
+    onChange(options);
+  };
 
   const renderOptions = options.map((options) => {
-    return <div key={options.value}>{options.label}</div>;
+    return (
+      <div
+        className="hover:bg-sky-100 rounded cursor-pointer p-1"
+        onClick={() => handleClickOptions(options)}
+        key={options.value}
+      >
+        {options.label}
+      </div>
+    );
   });
 
-  let content = 'select...'
-  if(select){
-    content = content.label
-  }
+  // comment out code since I'm going to make a cleaner one
+  // let content = 'select...'
+  // if(select){
+  //   content = content.label
+  // }
 
   return (
-    <div>
-      <div onClick={handleClick}>{content}</div>
-      { open && <div>{renderOptions}</div>}
+    <div className="w-48 relative">
+      {/* updated the let content inside here */}
+      <Panel
+        className="flex justify-between items-center cursor-pointer "
+        onClick={handleClick}
+      >
+        {value?.label || "select..."}
+        <GoChevronDown className="text-lg"/>
+        
+      </Panel>
+      {open && (
+        <Panel className="absolute top-full">
+          {renderOptions}
+        </Panel>
+      )}
     </div>
   );
 }
