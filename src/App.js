@@ -19,7 +19,10 @@ function App() {
   ];
   return (
     // change selection to value for naming convention and same for onChange
-    <Dropdown options={options} value={select} onChange={handleSelect} />
+
+    <div className="flex">
+      <Dropdown options={options} value={select} onChange={handleSelect} />
+    </div>
   );
 }
 

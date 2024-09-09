@@ -1,9 +1,29 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { GoChevronDown } from "react-icons/go";
 import Panel from "./Panel";
 function Dropdown({ options, value, onChange }) {
   const [open, setOpen] = useState(false);
+  const divEl = useRef()
+
+  // creating a useEffect for event listeing to the dropdown click
+
+  useEffect(() => {
+    const handler = (e) => {
+      //listening to the event target
+      if(!divEl.current.contains(e.target)){
+       setOpen(false)
+      }
+    };
+    //need to add the document event listener with three arguments
+    document.addEventListener("click", handler, true);
+
+    //cleanup
+    return () => {
+      // removing the event lister that required two argument.
+      document.removeEventListener("click", handler);
+    };
+  }, []);
 
   const handleClick = () => {
     setOpen(!open);
@@ -34,21 +54,16 @@ function Dropdown({ options, value, onChange }) {
   // }
 
   return (
-    <div className="w-48 relative">
+    <div ref={divEl} className="w-48 relative">
       {/* updated the let content inside here */}
       <Panel
         className="flex justify-between items-center cursor-pointer "
         onClick={handleClick}
       >
         {value?.label || "select..."}
-        <GoChevronDown className="text-lg"/>
-        
+        <GoChevronDown className="text-lg" />
       </Panel>
-      {open && (
-        <Panel className="absolute top-full">
-          {renderOptions}
-        </Panel>
-      )}
+      {open && <Panel className="absolute top-full">{renderOptions}</Panel>}
     </div>
   );
 }
