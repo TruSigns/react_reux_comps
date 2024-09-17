@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import NaviContext from "../context/navigation";
+import useNavi from "../hooks/use-navi";
 
 function Route({ path, children }) {
   // Retrieve the current path from the NaviContext
-  const { currentPath } = useContext(NaviContext);
+  const { currentPath } = useNavi();
 
   // Check if the given path matches the current path
   if (path === currentPath) {
