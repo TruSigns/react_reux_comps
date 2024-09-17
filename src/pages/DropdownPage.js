@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import "./index.css";
 import Dropdown from "../components/Dropdown";
 
 
-function DrowdownPage() {
+function DropdownPage() {
   //creating useState for selecting labels / seting label to null so nothing isn't selected
   const [select, setSelect] = useState(null);
 
@@ -27,4 +26,4 @@ function DrowdownPage() {
   );
 }
 
-export default DrowdownPage;
+export default DropdownPage;
