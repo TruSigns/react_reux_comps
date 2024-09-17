@@ -9,10 +9,9 @@ const directionPath = window.location.pathname;
 
 // creating the function for the provider while passing in the child prop
 function NaviProvider({ children }) {
-
   useEffect(() => {
     const handler = () => {
-        setCurrentPath(directionPath)
+      setCurrentPath(directionPath);
     };
     window.addEventListener("popstate", handler);
     return () => {
@@ -23,10 +22,17 @@ function NaviProvider({ children }) {
   //useState
   const [currentPath, setCurrentPath] = useState(directionPath);
 
+  // navigation function that will change the path where ever the user goes
+  const navi = (to) => {
+    window.history.pushState({}, "", to);
+    setCurrentPath(to);
+
+    // const history = window.history.pushState({}, '', to);
+    // setCurrentPath(history)
+  };
+
   return (
-    <NaviContext.Provider value={{}}>
-      {/* sending the children data back to the parent */}
-      {currentPath}
+    <NaviContext.Provider value={{ currentPath, navi }}>
       {children}
     </NaviContext.Provider>
   );
