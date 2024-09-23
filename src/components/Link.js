@@ -4,10 +4,12 @@ import useNavi from '../hooks/use-navi';
 
 
 // passing in two props for the path, and another one to show text
-function Link({to, children}) {
+function Link({to, children, className, activeClassName}) {
 
-const {navi} = useNavi()
-const classes = classNames('text-blue-500')
+const {navi, currentPath} = useNavi()
+const classes = classNames('text-blue-500', className,
+  currentPath == to && activeClassName
+)
 
 const handleClick =(e) => {
     // prevent page from refreshing
