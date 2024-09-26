@@ -11,8 +11,9 @@ function Button({
   danger,
   outline,
   rounded,
+  onClick,  // Accept the onClick prop
+  ...rest  // Collect any other button props
 }) {
-
   const classes = twMerge(
     classNames('px-3 py-1.5 border', {
       'border-blue-500 bg-blue-500 text-white': primary,
@@ -26,11 +27,19 @@ function Button({
       'text-gray-900': outline && secondary,
       'text-green-500': outline && success,
       'text-yellow-400': outline && warning,
-      'text-red-500': outline && danger
+      'text-red-500': outline && danger,
     })
   );
 
-  return <button className={classes}>{children}</button>;
+  return (
+    <button 
+      onClick={onClick}  // Attach the onClick handler here
+      className={classes}
+      {...rest}  // Spread the rest of the props like type, disabled, etc.
+    >
+      {children}
+    </button>
+  );
 }
 
 Button.propTypes = {
@@ -53,7 +62,7 @@ Button.propTypes = {
       Number(!!rounded);
 
     if (count > 1) {
-      return new Error("one the props that was setup within code");
+      return new Error("Only one of primary, secondary, success, warning, or danger can be set at a time.");
     }
   },
 };

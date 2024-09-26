@@ -20,7 +20,7 @@ function DropdownPage() {
   return (
     // change selection to value for naming convention and same for onChange
 
-    <div className="flex">
+    <div className="flex" >
       <Dropdown options={options} value={select} onChange={handleSelect} />
     </div>
   );
